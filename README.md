@@ -39,25 +39,25 @@ python3 --version
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/your-username/rock-paper-scissors.git
+git clone https://github.com/andriastheI/rockPaperScissors.git
 ```
 
 2. **Navigate into the project**
 
 ```bash
-cd rock-paper-scissors
+cd RockPaperScissors
 ```
 
 3. **Run the game**
 
 ```bash
-python rock_paper_scissors.py
+python rockPaperScissors.py
 ```
 
 or
 
 ```bash
-python3 rock_paper_scissors.py
+python3 rockPaperScissors.py
 ```
 
 ---
@@ -91,9 +91,9 @@ python3 rock_paper_scissors.py
 ## Project Structure
 
 ```text
-rock-paper-scissors/
+rockPaperScissors/
 │
-├── rock_paper_scissors.py
+├── rockPaperScissors.py
 ├── README.md
 └── .gitignore
 ```
