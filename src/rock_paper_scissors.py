@@ -19,7 +19,7 @@ import random
 # ------------------------------------------------------------
 def main():
     intro()
-    runGame()
+    run_game()
 
 
 # ------------------------------------------------------------
@@ -44,10 +44,13 @@ def intro():
 # ------------------------------------------------------------
 # Controls overall program flow and replay logic
 # ------------------------------------------------------------
-def runGame():
+def run_game():
+    if not verify_playing():
+        print("Good Game!")
+        return
+
     while True:
-        if not play():
-            break
+        play()
 
         again = input("Would you like to play again ?(y/n). ").strip().lower()
         while again not in ("y", "n"):
@@ -59,30 +62,27 @@ def runGame():
     print("Good Game!")
 
 
+
 # ------------------------------------------------------------
 # Controls one full game session
 # ------------------------------------------------------------
 def play():
-    numberOfRounds = roundPrompt()
+    number_of_rounds = round_prompt()
 
-    if numberOfRounds == -1:
-        print("Game quitting...")
-        return False
-
-    print("Best of " + str(numberOfRounds))
+    print("Best of " + str(number_of_rounds))
 
     count = 0
-    computerWinCount = 0
-    playerWinCount = 0
-    tieCount = 0
+    computer_win_count = 0
+    player_win_count = 0
+    tie_count = 0
 
-    while numberOfRounds > 0:
+    while number_of_rounds > 0:
         count += 1
 
-        print("ROUND: " + str(count))
-        print("PLAYER: " + str(playerWinCount))
-        print("COMPUTER: " + str(computerWinCount))
-        print("TIE: " + str(tieCount))
+        print("     ROUND: " + str(count))
+        print("PLAYER: " + str(player_win_count))
+        print("COMPUTER: " + str(computer_win_count))
+        print("TIE: " + str(tie_count))
 
         while True:
             player = input("Rock(r), Paper(p), Scissors(s)? ").strip().lower()
@@ -98,63 +98,65 @@ def play():
             else:
                 print("Please enter either 'r' or 'p' or 's'.")
 
-        computer = randComChoice()
-
+        computer = rand_com_choice()
+        print("")
         print("Computer chose: " + str(computer))
         print("Player chose: " + str(player))
 
-        winner = checkWin(computer, player)
+        winner = check_win(computer, player)
 
         if winner == "0":
-            computerWinCount += 1
-            numberOfRounds -= 1
+            computer_win_count += 1
+            number_of_rounds -= 1
+            print("Computer wins this round!")
         elif winner == "1":
-            playerWinCount += 1
-            numberOfRounds -= 1
+            player_win_count += 1
+            number_of_rounds -= 1
+            print("Player wins this round!")
         else:
-            tieCount += 1
+            tie_count += 1
 
-    print("ROUND: " + str(count))
-    print("PLAYER: " + str(playerWinCount))
-    print("COMPUTER: " + str(computerWinCount))
-    print("TIE: " + str(tieCount))
+    print("TOTAL ROUNDS : " + str(count))
+    print("PLAYER: " + str(player_win_count))
+    print("COMPUTER: " + str(computer_win_count))
+    print("TIE: " + str(tie_count))
 
-    if computerWinCount > playerWinCount:
-        print("COMPUTER WINS!")
+    if computer_win_count > player_win_count:
+        print("****************************")
+        print("***** COMPUTER WINS! *******")
+        print("****************************")
     else:
-        print("PLAYER WINS!")
-
-    return True
+        print("****************************")
+        print("***** PLAYER WINS! *******")
+        print("****************************")
 
 
 # ------------------------------------------------------------
 # Prompts user to choose the number of rounds
 # ------------------------------------------------------------
-def roundPrompt():
-    if verifyPlaying():
-        print("Choose the number of round you want to play: ")
-        print("(a) Best of 1")
-        print("(b) Best of 3")
-        print("(c) Best of 5")
+def round_prompt():
+    print("Choose the number of round you want to play: ")
+    print("(a) Best of 1")
+    print("(b) Best of 3")
+    print("(c) Best of 5")
 
-        while True:
-            rounds = input(" ").strip().lower()
-            if rounds == "a":
-                return 1
-            elif rounds == "b":
-                return 3
-            elif rounds == "c":
-                return 5
-            else:
-                print("Please enter either 'a' or 'b' or 'c'.")
-    else:
-        return -1
+    while True:
+        rounds = input(" ").strip().lower()
+        if rounds == "a":
+            return 1
+        elif rounds == "b":
+            return 3
+        elif rounds == "c":
+            return 5
+        else:
+            print("Please enter either 'a' or 'b' or 'c'.")
+
 
 
 # ------------------------------------------------------------
 # Asks the player if they want to start the game
 # ------------------------------------------------------------
-def verifyPlaying():
+def verify_playing():
     while True:
         begin = input("Would you like to start the game?(y/n). ").strip().lower()
         if begin == "y":
@@ -169,7 +171,7 @@ def verifyPlaying():
 # ------------------------------------------------------------
 # Determines the winner of a round
 # ------------------------------------------------------------
-def checkWin(ply1 , ply2):
+def check_win(ply1, ply2):
     if ply1 == "Rock" and ply2 == "Scissors":
         return "0"
     elif ply1 == "Rock" and ply2 == "Paper":
@@ -189,7 +191,7 @@ def checkWin(ply1 , ply2):
 # ------------------------------------------------------------
 # Generates a random choice for the computer
 # ------------------------------------------------------------
-def randComChoice():
+def rand_com_choice():
     return random.choice(["Rock", "Paper", "Scissors"])
 
 

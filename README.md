@@ -51,13 +51,13 @@ cd RockPaperScissors
 3. **Run the game**
 
 ```bash
-python src/rockPaperScissors.py
+python src/rock_paper_scissors.py
 ```
 
 or
 
 ```bash
-python3 src/rockPaperScissors.py
+python3 src/rock_paper_scissors.py
 ```
 
 ---
@@ -94,7 +94,7 @@ python3 src/rockPaperScissors.py
 RockPaperScissors/
 │
 ├── src/
-│   └── rockPaperScissors.py
+│   └── rock_paper_scissors.py
 │
 ├── README.md
 └── .gitignore
@@ -110,7 +110,7 @@ Python 3.12
 
 ---
 
-## License
+## Purpose
 
 This project was created for educational purposes.
 
